@@ -36,6 +36,26 @@ docker compose --profile tools up   # also starts Adminer DB browser on http://l
 
 In Adminer use server `db` and the owner account from `.env` (`oes_owner`).
 
+## Deploy on Render
+
+Render does not run this `docker-compose.yml` as one service. Deploy the root `Dockerfile` as a **Web Service** and create a separate Render PostgreSQL database. Set the web service's environment variables to the database connection details and secrets below:
+
+```text
+DB_HOST=<Render PostgreSQL hostname>
+DB_PORT=5432
+DB_NAME=<database name>
+DB_USER=<least-privilege application user>
+DB_PASSWORD=<application user password>
+ANSWER_KEY_SECRET=<long random secret>
+RESULT_HMAC_SECRET=<long random secret>
+COOKIE_SECURE=true
+SEED_DEMO_DATA=true
+```
+
+Render supplies `PORT` automatically. The web service health-check path can be `/healthz`.
+
+Before the first deployment, apply `db/init/01_schema.sql` and `db/init/02_app_role.sh` to the Render database using an owner/admin connection, adapting the role and password values for the Render environment. The Compose database container applies these files automatically during local development, but a managed Render database does not run repository init scripts automatically.
+
 ## Demo data (created on first start)
 
 | Exam | Course | State | What to try |
