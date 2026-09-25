@@ -38,7 +38,14 @@ In Adminer use server `db` and the owner account from `.env` (`oes_owner`).
 
 ## Deploy on Render
 
-Render does not run this `docker-compose.yml` as one service. Deploy the root `Dockerfile` as a **Web Service** and create a separate Render PostgreSQL database. Set the web service's environment variables to the database connection details and secrets below:
+Render does not run this `docker-compose.yml` as one service. Deploy the root `Dockerfile` as a **Web Service** and create a separate Render PostgreSQL database. Link the database to the web service and prefer the connection string Render provides:
+
+```text
+DATABASE_URL=<Render internal PostgreSQL connection string>
+DB_SSL=false
+```
+
+If you do not link the database, set the separate connection variables instead:
 
 ```text
 DB_HOST=<Render PostgreSQL hostname>

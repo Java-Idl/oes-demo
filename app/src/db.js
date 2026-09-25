@@ -28,7 +28,7 @@ async function waitForDb(retries = 30) {
   for (let i = 1; i <= retries; i++) {
     try { await pool.query('SELECT 1'); return; }
     catch (e) {
-      console.log(`Waiting for database (${i}/${retries})...`);
+      console.log(`Waiting for database (${i}/${retries}): ${e.message}`);
       await new Promise(r => setTimeout(r, 2000));
     }
   }

@@ -5,15 +5,23 @@ function required(name, fallback) {
   return v;
 }
 
+const databaseUrl = process.env.DATABASE_URL;
+const db = databaseUrl
+  ? {
+      connectionString: databaseUrl,
+      ...(process.env.DB_SSL === 'true' ? { ssl: { rejectUnauthorized: false } } : {}),
+    }
+  : {
+      host: required('DB_HOST', 'localhost'),
+      port: parseInt(process.env.DB_PORT || '5432', 10),
+      database: required('DB_NAME', 'oes'),
+      user: required('DB_USER', 'oes_app'),
+      password: required('DB_PASSWORD'),
+    };
+
 module.exports = {
   port: parseInt(process.env.PORT || '3000', 10),
-  db: {
-    host: required('DB_HOST', 'localhost'),
-    port: parseInt(process.env.DB_PORT || '5432', 10),
-    database: required('DB_NAME', 'oes'),
-    user: required('DB_USER', 'oes_app'),
-    password: required('DB_PASSWORD'),
-  },
+  db,
   // Secrets used for encrypting answer keys and signing results (SR-07, SR-08).
   answerKeySecret: required('ANSWER_KEY_SECRET'),
   resultHmacSecret: required('RESULT_HMAC_SECRET'),
