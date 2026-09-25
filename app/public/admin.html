@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Administration · ExamSecure</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <main>
+    <div class="crumbs">Administration</div>
+    <h1>Users &amp; Roles</h1>
+    <div id="msg"></div>
+    <div class="table-wrap card">
+      <table>
+        <thead><tr><th>Name</th><th>Email</th><th>Role</th><th>Roll / Dept</th><th>Status</th><th>Last login</th><th>Actions</th></tr></thead>
+        <tbody id="user-rows"></tbody>
+      </table>
+    </div>
+
+    <h2>Create user</h2>
+    <form class="card" id="user-form" novalidate>
+      <div id="user-msg"></div>
+      <div class="row">
+        <div><label for="u-role">Role *</label>
+          <select id="u-role"><option value="STUDENT">Student</option><option value="FACULTY">Faculty</option><option value="ADMIN">Administrator</option></select></div>
+        <div><label for="u-name">Full name *</label><input id="u-name" maxlength="100"></div>
+        <div><label for="u-email">Email *</label><input id="u-email" type="email" maxlength="120"></div>
+      </div>
+      <div class="row">
+        <div><label for="u-pass">Initial password * (min 10)</label><input id="u-pass" type="password" autocomplete="new-password"></div>
+        <div class="student-only"><label for="u-roll">Roll number *</label><input id="u-roll" maxlength="20"></div>
+        <div><label for="u-dept">Department</label><input id="u-dept" maxlength="50"></div>
+      </div>
+      <div class="actions"><button class="primary" type="submit">Create user</button></div>
+    </form>
+
+    <h2>Courses &amp; Enrollment</h2>
+    <div class="table-wrap card">
+      <table>
+        <thead><tr><th>Code</th><th>Title</th><th>Faculty</th><th>Enrolled</th></tr></thead>
+        <tbody id="course-rows"></tbody>
+      </table>
+    </div>
+    <div class="row">
+      <form class="card" id="course-form" novalidate>
+        <strong>New course</strong>
+        <div id="course-msg"></div>
+        <label for="c-code">Course code *</label><input id="c-code" maxlength="20">
+        <label for="c-title">Title *</label><input id="c-title" maxlength="120">
+        <label for="c-fac">Faculty *</label><select id="c-fac"></select>
+        <div class="actions"><button class="primary" type="submit">Add course</button></div>
+      </form>
+      <form class="card" id="enroll-form" novalidate>
+        <strong>Enroll student</strong>
+        <div id="enroll-msg"></div>
+        <label for="e-stu">Student *</label><select id="e-stu"></select>
+        <label for="e-course">Course *</label><select id="e-course"></select>
+        <div class="actions"><button class="primary" type="submit">Enroll</button></div>
+      </form>
+    </div>
+
+    <h2 id="audit">Audit Log</h2>
+    <div class="actions"><button id="verify-btn">Verify hash chain</button><button id="refresh-audit">Refresh</button></div>
+    <div id="verify-msg"></div>
+    <div class="table-wrap card">
+      <table>
+        <thead><tr><th>#</th><th>Time</th><th>User</th><th>Action</th><th>Entity</th><th>Details</th><th>IP</th></tr></thead>
+        <tbody id="audit-rows"></tbody>
+      </table>
+    </div>
+  </main>
+  <script src="/js/common.js"></script>
+  <script src="/js/admin.js"></script>
+</body>
+</html>

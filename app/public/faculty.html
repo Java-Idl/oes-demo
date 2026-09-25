@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>My Exams · ExamSecure</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <main>
+    <div class="crumbs">Faculty › My Exams</div>
+    <h1>My Exams</h1>
+    <div id="msg"></div>
+    <div class="table-wrap card">
+      <table>
+        <thead><tr><th>Course</th><th>Exam</th><th>Window</th><th>Questions</th><th>Marks</th><th>Submitted</th><th>Status</th><th></th></tr></thead>
+        <tbody id="exam-rows"><tr><td colspan="8" class="muted">Loading…</td></tr></tbody>
+      </table>
+    </div>
+
+    <h2>Create / Schedule Exam</h2>
+    <form class="card" id="create-form" novalidate>
+      <div id="create-msg"></div>
+      <div class="row">
+        <div><label for="course">Course *</label><select id="course" required></select></div>
+        <div><label for="title">Exam title *</label><input id="title" maxlength="150" required placeholder="e.g. Mid-Term 3"></div>
+      </div>
+      <div class="row">
+        <div><label for="start">Window opens *</label><input id="start" type="datetime-local" required></div>
+        <div><label for="end">Window closes *</label><input id="end" type="datetime-local" required></div>
+        <div><label for="duration">Duration (minutes) *</label><input id="duration" type="number" min="1" value="30" required></div>
+      </div>
+      <p class="muted small">The exam is created as a draft. Add questions on the next screen, then schedule it to make it visible to students.</p>
+      <div class="actions"><button class="primary" type="submit">Create exam</button></div>
+    </form>
+  </main>
+  <script src="/js/common.js"></script>
+  <script src="/js/faculty.js"></script>
+</body>
+</html>

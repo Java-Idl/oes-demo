@@ -1,0 +1,57 @@
+# Online Examination System - demo stack
+#   docker compose up --build        -> http://localhost:8918
+services:
+  db:
+    image: postgres:16-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB}
+      POSTGRES_USER: ${POSTGRES_USER}             # owner account, used only to create the schema
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      APP_DB_USER: ${APP_DB_USER}                 # least-privilege account for the app
+      APP_DB_PASSWORD: ${APP_DB_PASSWORD}
+    volumes:
+      - db_data:/var/lib/postgresql/data
+      - ./db/init:/docker-entrypoint-initdb.d:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U $${POSTGRES_USER} -d $${POSTGRES_DB}"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+    networks: [backend]                           # not published to the host (TB2 - data tier)
+
+  app:
+    build: ./app
+    restart: unless-stopped
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      PORT: 3000
+      DB_HOST: db
+      DB_PORT: 5432
+      DB_NAME: ${POSTGRES_DB}
+      DB_USER: ${APP_DB_USER}
+      DB_PASSWORD: ${APP_DB_PASSWORD}
+      ANSWER_KEY_SECRET: ${ANSWER_KEY_SECRET}
+      RESULT_HMAC_SECRET: ${RESULT_HMAC_SECRET}
+      COOKIE_SECURE: ${COOKIE_SECURE:-false}
+      SEED_DEMO_DATA: ${SEED_DEMO_DATA:-true}
+    ports:
+      - "8919:3000"
+    networks: [backend]
+
+  # Optional DB browser: docker compose --profile tools up
+  adminer:
+    image: adminer
+    profiles: ["tools"]
+    depends_on: [db]
+    ports:
+      - "8920:8919"
+    networks: [backend]
+
+volumes:
+  db_data:
+
+networks:
+  backend:

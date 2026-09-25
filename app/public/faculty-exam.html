@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Exam · ExamSecure</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <main>
+    <div class="crumbs"><a href="/faculty.html">My Exams</a> › <span id="crumb">Exam</span></div>
+    <h1 id="exam-title">Loading…</h1>
+    <div id="msg"></div>
+    <div class="stats" id="stats"></div>
+
+    <!-- ===== questions ===== -->
+    <section id="questions-section">
+      <h2>Questions</h2>
+      <div id="questions"></div>
+      <div class="actions" id="schedule-actions"></div>
+
+      <form class="card hidden" id="q-form" novalidate>
+        <h2>Add question</h2>
+        <div id="q-msg"></div>
+        <div class="row">
+          <div><label for="q-type">Type</label>
+            <select id="q-type"><option value="MCQ">Multiple choice</option><option value="TEXT">Descriptive (manual grading)</option></select></div>
+          <div><label for="q-marks">Marks *</label><input id="q-marks" type="number" min="0.5" step="0.5" value="2"></div>
+        </div>
+        <label for="q-text">Question *</label>
+        <textarea id="q-text" maxlength="2000"></textarea>
+        <div id="mcq-fields">
+          <label>Options (2–6) – select the correct one *</label>
+          <div id="opt-list"></div>
+          <button type="button" id="add-opt">+ Add option</button>
+        </div>
+        <div class="actions"><button class="primary" type="submit">Add question</button></div>
+      </form>
+    </section>
+
+    <!-- ===== submissions / review & publish ===== -->
+    <section id="review-section" class="hidden">
+      <h2>Review &amp; Publish Results</h2>
+      <div class="table-wrap card">
+        <table>
+          <thead><tr><th>Roll No</th><th>Name</th><th>Submitted at</th><th>Total</th><th>Status</th><th></th></tr></thead>
+          <tbody id="attempt-rows"></tbody>
+        </table>
+      </div>
+      <div id="publish-msg"></div>
+      <div class="actions"><button class="primary" id="publish-btn">Publish Results</button></div>
+      <div id="grading"></div>
+    </section>
+  </main>
+
+  <dialog id="publish-dialog">
+    <h2>Confirm publication</h2>
+    <p>Re-enter your password to publish. Published marks become read-only and students are notified.</p>
+    <div id="pd-msg"></div>
+    <label for="pd-password">Password</label>
+    <input id="pd-password" type="password" autocomplete="current-password">
+    <div class="actions"><button id="pd-cancel">Cancel</button><button class="primary" id="pd-confirm">Publish</button></div>
+  </dialog>
+
+  <script src="/js/common.js"></script>
+  <script src="/js/faculty-exam.js"></script>
+</body>
+</html>

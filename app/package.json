@@ -1,0 +1,14 @@
+{
+  "name": "oes-demo",
+  "version": "1.0.0",
+  "description": "Online Examination System - secure demo (Node.js + PostgreSQL, vanilla HTML/CSS/JS frontend)",
+  "main": "src/server.js",
+  "scripts": {
+    "start": "node src/server.js"
+  },
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "express": "^4.21.2",
+    "pg": "^8.13.1"
+  }
+}

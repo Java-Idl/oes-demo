@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Sign in · ExamSecure</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <div class="login-page">
+    <div class="login-box card">
+      <p class="brand">ExamSecure</p>
+      <p class="muted">Sign in to your account</p>
+      <div id="msg"></div>
+      <form id="login-form" novalidate>
+        <label for="username">Email or Roll Number *</label>
+        <input id="username" name="username" autocomplete="username" required maxlength="120">
+        <label for="password">Password *</label>
+        <input id="password" name="password" type="password" autocomplete="current-password" required maxlength="200">
+        <label class="small"><input type="checkbox" id="show-pw" class="inline-check"> Show password</label>
+        <div class="actions"><button class="primary" type="submit" id="submit-btn">Sign In</button></div>
+      </form>
+      <details class="demo-accounts">
+        <summary>Demo accounts</summary>
+        <p>Admin: <code>admin@oes.local</code> / <code>Admin@12345</code></p>
+        <p>Faculty: <code>priya@oes.local</code> / <code>Faculty@12345</code></p>
+        <p>Student: <code>22CCE1001</code> / <code>Student@12345</code><br>
+           (also <code>22CCE1002</code>, <code>22CCE1003</code>)</p>
+      </details>
+    </div>
+  </div>
+  <script src="/js/common.js"></script>
+  <script src="/js/login.js"></script>
+</body>
+</html>

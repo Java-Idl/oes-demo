@@ -1,0 +1,17 @@
+.env
+**/node_modules/
+
+# Runtime and debug output
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Local database/runtime state
+db_data/
+
+# Operating-system and editor files
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/

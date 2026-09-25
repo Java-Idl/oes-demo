@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Exam · ExamSecure</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <div class="exam-bar">
+    <strong id="exam-title">Loading exam…</strong>
+    <span class="timer" id="timer" aria-live="polite">--:--:--</span>
+    <span class="save-state" id="save-state" aria-live="polite"></span>
+  </div>
+  <main>
+    <div id="msg"></div>
+    <div class="exam-layout hidden" id="layout">
+      <section class="card">
+        <div class="q-head"><span id="q-count"></span><span id="q-marks"></span></div>
+        <div class="q-text" id="q-text"></div>
+        <div id="q-answer"></div>
+        <div class="actions">
+          <button id="prev-btn">◀ Previous</button>
+          <button id="mark-btn" class="warn-btn">⚑ Mark for review</button>
+          <button id="clear-btn">Clear</button>
+          <button id="next-btn" class="primary">Save &amp; Next ▶</button>
+        </div>
+      </section>
+      <aside class="card">
+        <strong>Question Palette</strong>
+        <div class="palette" id="palette"></div>
+        <div class="legend" id="legend"></div>
+        <div class="actions"><button class="danger" id="submit-btn">Submit Exam</button></div>
+      </aside>
+    </div>
+  </main>
+
+  <dialog id="confirm-dialog">
+    <h2>Submit exam?</h2>
+    <p id="confirm-text"></p>
+    <p class="muted">Submission is final. You cannot change answers afterwards.</p>
+    <div class="actions"><button id="go-back">Go back</button><button class="danger" id="confirm-submit">Submit</button></div>
+  </dialog>
+
+  <dialog id="receipt-dialog">
+    <h2>Exam submitted</h2>
+    <div id="receipt-body"></div>
+    <div class="actions"><a class="btn primary" href="/student.html">Back to dashboard</a></div>
+  </dialog>
+
+  <script src="/js/common.js"></script>
+  <script src="/js/exam.js"></script>
+</body>
+</html>

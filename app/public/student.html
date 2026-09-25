@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Dashboard · ExamSecure</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <main>
+    <div class="crumbs">Dashboard › Available Exams</div>
+    <h1>Available Examinations</h1>
+    <div id="banner"></div>
+    <div id="msg"></div>
+    <div class="table-wrap card">
+      <table>
+        <thead><tr><th>Course</th><th>Exam</th><th>Window</th><th>Duration</th><th>Marks</th><th>Status</th><th>Action</th></tr></thead>
+        <tbody id="exam-rows"><tr><td colspan="7" class="muted">Loading…</td></tr></tbody>
+      </table>
+    </div>
+    <p class="muted small">Only exams of courses you are enrolled in are listed. Times are enforced by the server clock.</p>
+
+    <h2>My Results</h2>
+    <div class="table-wrap card">
+      <table>
+        <thead><tr><th>Course</th><th>Exam</th><th>Score</th><th>Grade</th><th>Published</th><th>Integrity</th><th></th></tr></thead>
+        <tbody id="result-rows"><tr><td colspan="7" class="muted">Loading…</td></tr></tbody>
+      </table>
+    </div>
+  </main>
+
+  <dialog id="result-dialog">
+    <h2 id="rd-title">Result</h2>
+    <div id="rd-body"></div>
+    <div class="actions"><button id="rd-close">Close</button></div>
+  </dialog>
+
+  <script src="/js/common.js"></script>
+  <script src="/js/student.js"></script>
+</body>
+</html>
